@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'diplomaProject.apps.DiplomaprojectConfig',
     'channels',
+    'accounts.apps.AccountsConfig'
 ]
 
 MIDDLEWARE = [
