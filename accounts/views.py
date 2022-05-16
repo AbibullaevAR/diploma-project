@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.urls import reverse
+from django.contrib.auth.views import PasswordResetView
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
 from django.views.generic.edit import FormView, UpdateView
 
 from .forms import MentorRegistrationForm
@@ -27,3 +28,11 @@ class ChangeProfileView(LoginRequiredMixin, UpdateView):
     fields = ('username', 'last_name', 'first_name')
     template_name = 'accounts/user_profile.html'
     success_url = '/'
+
+
+class PswResetView(PasswordResetView):
+    template_name = 'accounts/password_reset_form.html'
+    email_template_name = 'accounts/password_reset_email.html'
+    success_url = reverse_lazy('accounts:password_reset_done')
+
+
