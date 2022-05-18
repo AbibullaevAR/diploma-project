@@ -1,15 +1,17 @@
 from django.shortcuts import render
 from django.views.generic.edit import FormView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django import forms
 
 from accounts.models import Profile
-from .models import Tag
+from .models import Tag, NewsModel
 from .forms import CreateNewsForm
+
 
 # Create your views here.
 
 
-class CreateNews(LoginRequiredMixin, FormView):
+class CreateNewsView(LoginRequiredMixin, FormView):
     template_name = 'news/create_news.html'
     form_class = CreateNewsForm
     success_url = '/'
@@ -25,7 +27,7 @@ class CreateNews(LoginRequiredMixin, FormView):
         # Get group for requested user
         group = Profile.objects.filter(user=self.request.user).first().group
 
-        tags_s = str(form.cleaned_data['tags']).split('#')
+        tags_s = str(form.cleaned_data['tags']).split('#')[1:]
 
         tags_from_db = self.get_tags_filter_group()
 
@@ -46,10 +48,9 @@ class CreateNews(LoginRequiredMixin, FormView):
 
         create_news.save()
 
-        return super(CreateNews, self).form_valid(form)
+        return super(CreateNewsView, self).form_valid(form)
 
     def get_tags_filter_group(self):
-
         # Subquery find Profile for user
         # user do not have relationship with Group
         return Tag.objects.filter(
@@ -57,3 +58,8 @@ class CreateNews(LoginRequiredMixin, FormView):
         ).all()
 
 
+class UpdateNewsView(LoginRequiredMixin, UpdateView):
+    model = NewsModel
+    fields = ('title', 'body')
+    template_name = 'news/update_news.html'
+    success_url = '/'
