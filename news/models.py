@@ -36,3 +36,18 @@ class NewsModel(models.Model):
     create_date = models.DateField(auto_now_add=True)
 
     change_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+
+class TagUserChoice(models.Model):
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE
+    )
+    tag = models.ForeignKey(
+        Tag,
+        on_delete=models.CASCADE
+    )
+    choice = models.BooleanField(blank=False)
