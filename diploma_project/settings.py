@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'diplomaProject.apps.DiplomaprojectConfig',
     'channels',
     'accounts.apps.AccountsConfig',
-    'news.apps.NewsConfig'
+    'news.apps.NewsConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
