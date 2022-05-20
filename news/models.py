@@ -11,10 +11,26 @@ class Tag(models.Model):
         on_delete=models.CASCADE
     )
 
+    user = models.ManyToManyField(get_user_model(), through='TagUserChoice')
+
     name = models.CharField(max_length=250)
 
     def __str__(self):
         return self.name
+
+
+class TagUserChoice(models.Model):
+    tag = models.ForeignKey(
+        Tag,
+        on_delete=models.CASCADE
+    )
+
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE
+    )
+
+    choice = models.BooleanField(blank=False)
 
 
 class NewsModel(models.Model):
@@ -40,14 +56,3 @@ class NewsModel(models.Model):
     def __str__(self):
         return self.title
 
-
-class TagUserChoice(models.Model):
-    user = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.CASCADE
-    )
-    tag = models.ForeignKey(
-        Tag,
-        on_delete=models.CASCADE
-    )
-    choice = models.BooleanField(blank=False)
