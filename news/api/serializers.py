@@ -2,7 +2,7 @@ from abc import ABC
 
 from rest_framework import serializers
 
-from news.models import Tag, NewsModel
+from news.models import Tag, NewsModel, TagUserChoice
 
 
 class TagSerializers(serializers.ModelSerializer):
@@ -24,3 +24,16 @@ class UpdateNewsTagSerializers(serializers.ModelSerializer):
         instance.tags.add(validated_data['tags'][0])
         return instance
 
+
+class TagUserChoiceSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = TagUserChoice
+        fields = ('tag', 'choice')
+
+
+class ListNewsSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = NewsModel
+        fields = ('id', 'title', )
