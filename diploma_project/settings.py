@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'channels',
     'accounts.apps.AccountsConfig',
     'news.apps.NewsConfig',
+    'discussions.apps.DiscussionsConfig',
     'rest_framework'
 ]
 
