@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'diplomaProject.apps.DiplomaprojectConfig',
     'channels',
-    'accounts.apps.AccountsConfig'
+    'accounts.apps.AccountsConfig',
+    'news.apps.NewsConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

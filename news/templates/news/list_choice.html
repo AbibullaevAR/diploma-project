@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for tag in tags %}
+        {{ tag.name }}
+        {% if tag.taguserchoice_set.get %}
+            {{ tag.taguserchoice_set.get.choice }}
+        {% else %}
+            Not set
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
