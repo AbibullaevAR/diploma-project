@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'news.apps.NewsConfig',
     'discussions.apps.DiscussionsConfig',
-    'rest_framework'
+    'rest_framework',
+    'attached_file.apps.AttachedFileConfig'
 ]
 
 MIDDLEWARE = [
