@@ -15,6 +15,6 @@ class CreateUserFileView(generics.CreateAPIView):
 
     def get_success_headers(self, data):
         headers = super().get_success_headers(data)
-        headers['Upload_URL'] = get_upload_link(self.created_instance.pk)
+        headers['Upload_URL'] = get_upload_link(str(self.created_instance.pk) + self.created_instance.file_name)
         return headers
 
