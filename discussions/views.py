@@ -3,10 +3,12 @@ from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 
+from accounts.models import Profile
 from attached_file.models import UserFiles
-from .models import Discussions
+from .models import Discussions, Message
 
 # Create your views here.
 
@@ -40,6 +42,10 @@ class DetailDiscussionView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['attached_file'] = UserFiles.objects.filter(discussion=context['discussion']).all()
+        context['messages'] = Message.objects.filter(discussion=self.get_object()).all()
+        context['participants'] = User.objects.filter(
+            profile__in=Profile.objects.filter(group__profile__user=self.request.user).all()
+        ).all()
         return context
 
 

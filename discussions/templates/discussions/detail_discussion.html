@@ -9,5 +9,12 @@
 {% for file in attached_file %}
     {{ file.file_name }}
 {% endfor %}
+{% for mgs in messages %}
+    {{ mgs.body }}
+    {{ mgs.created_user.username }}
+{% endfor %}
+{% for user in participants %}
+    {{ user.username }}
+{% endfor %}
 </body>
 </html>
