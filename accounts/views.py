@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView, UpdateView
 
+from discussions.models import Discussions
 from .forms import MentorRegistrationForm
 from .mail_util import send_complete_reg_mail
 
@@ -19,6 +20,8 @@ class MentorRegistrationView(FormView):
         user = form.save(True)
 
         send_complete_reg_mail(self.request.scheme, self.request.get_host(), user.email)
+
+        Discussions(name='main', is_general_discussions=True, created_user=user).save()
 
         return super(MentorRegistrationView, self).form_valid(form)
 
