@@ -5,6 +5,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+from attached_file.models import UserFiles
 from .models import Discussions
 
 # Create your views here.
@@ -35,6 +36,11 @@ class DetailDiscussionView(LoginRequiredMixin, DetailView):
     model = Discussions
     template_name = 'discussions/detail_discussion.html'
     context_object_name = 'discussion'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['attached_file'] = UserFiles.objects.filter(discussion=context['discussion']).all()
+        return context
 
 
 class DelateDiscussionView(LoginRequiredMixin, DeleteView):
