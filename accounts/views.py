@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView, UpdateView
@@ -34,5 +34,9 @@ class PswResetView(PasswordResetView):
     template_name = 'accounts/password_reset_form.html'
     email_template_name = 'accounts/password_reset_email.html'
     success_url = reverse_lazy('accounts:password_reset_done')
+
+
+class PswResetConfirmView(PasswordResetConfirmView):
+    success_url = reverse_lazy('accounts:password_reset_complete')
 
 
