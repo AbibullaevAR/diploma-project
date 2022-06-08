@@ -6,5 +6,8 @@
 </head>
 <body>
 {{ discussion.name }}
+{% for file in attached_file %}
+    {{ file.file_name }}
+{% endfor %}
 </body>
 </html>
