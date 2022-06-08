@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetDoneView, \
     PasswordResetCompleteView
 
@@ -16,4 +16,5 @@ urlpatterns = [
 
 
     path('profile/<int:pk>', ChangeProfileView.as_view(), name='profile_change'),
+    path('api/', include('accounts.api.urls')),
 ]
