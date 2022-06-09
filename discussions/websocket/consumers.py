@@ -42,18 +42,22 @@ class ChatConsumer(WebsocketConsumer):
             self.group_name,
             {
                 'type': 'chat_message',
-                'message': text_message
+                'message': text_message,
+                'sending_user': text_data_json['sending_user']
             }
         )
 
     def chat_message(self, event):
         message = event['message']
+        sending_username = event['sending_user']
+        user_id = User.objects.filter(username=sending_username).first().pk
 
         self.send(
             text_data=json.dumps(
                 {
                     'message': message,
-                    'user': self.scope['user'].username,
+                    'user': sending_username,
+                    'user_id': user_id,
                     'date_time': datetime.now().strftime('%d/%m/%Y %H:%M:%S')
                 }
             )
