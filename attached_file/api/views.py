@@ -1,3 +1,4 @@
+from django.urls.base import reverse
 from rest_framework import generics
 from rest_framework import permissions
 
@@ -15,9 +16,11 @@ class CreateUserFileView(generics.CreateAPIView):
 
     def get_success_headers(self, data):
         headers = super().get_success_headers(data)
+        file_name = str(self.created_instance.pk) + self.created_instance.file_name
         ext_manage = ExternalStorageManage()
         headers['Upload_URL'] = ext_manage.get_upload_link(
-            str(self.created_instance.pk) + self.created_instance.file_name
+            file_name
         )
+        headers['download_link'] = reverse('attached_file:download_file', kwargs={'pk': self.created_instance.pk})
         return headers
 
