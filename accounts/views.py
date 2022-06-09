@@ -32,6 +32,14 @@ class ChangeProfileView(LoginRequiredMixin, UpdateView):
     template_name = 'accounts/user_profile.html'
     success_url = '/'
 
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_context_data(self, **kwargs):
+        context = super(ChangeProfileView, self).get_context_data(**kwargs)
+        context['group'] = self.request.user.profile_set.first().group.group_name
+        return context
+
 
 class PswResetView(PasswordResetView):
     template_name = 'accounts/password_reset_form.html'
