@@ -119,6 +119,7 @@
     margin-bottom: 4px;
 }
 .discussion__message-container {
+    flex-wrap: wrap;
     display: flex;
     justify-content: space-between;
 }

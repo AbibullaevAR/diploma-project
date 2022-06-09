@@ -4,6 +4,12 @@
     <title>Обсуждение: {{ discussion.name }}</title>
     {% load static %}
     <link href="{% static '/discussions/css/discussion.css' %}" rel="stylesheet" type="text/css">
+    <script defer src="{%  static '/discussions/js/discussion.js' %}"></script>
+    <script>
+        window.user_pk = {{ user.pk }};
+        window.username = '{{ user.username }}';
+        window.discussion_id = {{ discussion.pk }};
+    </script>
 {% endblock %}
 
 {% block main %}
@@ -43,8 +49,8 @@
                     <div class="discussion__message">
                         <div class="discussion__message-wrapper">
                             {% for mgs in messages %}
-                                <div class="discussion__message-item-come">
-                                    <div class="discussion__message-item discussion__message-item_come">
+                                <div class="discussion__message-item-{% if mgs.created_user == user %}send{% else %}come{% endif %}">
+                                    <div class="discussion__message-item discussion__message-item_{% if mgs.created_user == user %}send{% else %}come{% endif %}">
                                         <p class="discussion__message-text">{{ mgs.body }}</p>
                                         <div class="discussion__message-container">
                                             <span class="discussion__message-name"> {{ mgs.created_user.username }} </span>
@@ -80,7 +86,7 @@
                     <div class="discussion__container_hiden">
                         {% for file in attached_file %}
                             <div class="discussion__item">
-                                <a href="#" target="_blank">
+                                <a href="{% url 'attached_file:download_file' pk=file.pk %}" target="_blank">
                                     <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <mask id="path-1-inside-1_195_13" fill="white">
                                         <path d="M5.83337 0H12C13.6569 0 15 1.34315 15 3V15C15 16.6569 13.6569 18 12 18H5.83337V0Z"/>
