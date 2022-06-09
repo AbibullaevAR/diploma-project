@@ -1,12 +1,11 @@
-from rest_framework import generics
-from rest_framework.mixins import UpdateModelMixin
-from rest_framework import permissions
 from django.contrib.auth.models import User
 from django.db.models import Q
+from rest_framework import generics
+from rest_framework import permissions
 
-from .serializers import TagSerializers, UpdateNewsTagSerializers, TagUserChoiceSerializers, ListNewsSerializers
-from news.models import Tag, NewsModel, TagUserChoice
 from accounts.models import Profile
+from news.models import Tag, NewsModel, TagUserChoice
+from .serializers import TagSerializers, UpdateNewsTagSerializers, TagUserChoiceSerializers, ListNewsSerializers, CreateNewsSerializers
 
 
 class TagList(generics.ListCreateAPIView):
@@ -71,6 +70,15 @@ class ListNewsView(generics.ListAPIView):
         ).all()
 
 
+class CreateNewsView(generics.CreateAPIView):
+    serializer_class = CreateNewsSerializers
+    permission_classes = [permissions.IsAuthenticated, ]
 
+    def perform_create(self, serializer):
+        self.created_instance = serializer.save(created_user=self.request.user)
 
+    def get_success_headers(self, data):
+        headers = super().get_success_headers(data)
+        headers['create_obj_pk'] = self.created_instance.pk
+        return headers
 
