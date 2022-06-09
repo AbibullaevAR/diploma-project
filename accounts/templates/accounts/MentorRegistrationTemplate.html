@@ -1,16 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base/base.html' %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-</form>
+{% block head %}
+    {% load static %}
+    <link href="{% static '/accounts/css/form.css' %}" rel="stylesheet" type="text/css">
+    <title>Регистрация куратора</title>
+{% endblock head %}
 
-</body>
-</html>
+{% block main %}
+<main class="main">
+        <div class="container">
+            <div class="reg-mentor__main main__container">
+                <form method="post" class="form">
+                    {% csrf_token %}
+                    <h2 class="form__heading">Регистрация</h2>
+                    <div class="form__container">
+                        <label class="form__label" for="id_email">Введите ваш email</label>
+                        <input class="form__input" type="email" name="email" required="" id="id_email" placeholder="Email">
+                    </div>
+                    <div class="form__container">
+                        <label class="form__label" for="id_group">Введите вашу группу</label>
+                        <input class="form__input" type="text" name="group" required="" id="id_group" placeholder="Группа">
+                    </div>
+
+                    <input class="form__button" type="submit" value="Создать">
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock main %}
