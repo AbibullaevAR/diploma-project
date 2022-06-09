@@ -18,9 +18,9 @@ body {
 }
 @font-face {
     font-family: RobotMedium;
-    src: url('./fonts/Roboto-Medium.ttf');
+    src: url('/static/base/fonts/Roboto-Medium.ttf');
    }
 @font-face {
     font-family: RobotBold;
-    src: url('./fonts/Roboto-Bold.ttf');
+    src: url('/static/base/fonts/Roboto-Bold.ttf');
    }
