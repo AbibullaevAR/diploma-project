@@ -29,17 +29,17 @@
                     </svg>
                 </div>
 
-                {% if user %}
-                 <nav class="header__menu header__auth">
-                    <a class="header__item header__item-auth {% if  members %}header__item_active{% endif %}" href="">Список участников</a>
-                    <a class="header__item header__item-auth {% if  reg_param %}header__item_active{% endif %}" href="">Параметры рекомендаций</a>
-                    <a class="header__item header__item-auth {% if  main_page %}header__item_active{% endif %}" href="">Главная страница</a>
-                </nav>
-                {% else %}
+                {% if user.is_anonymous %}
                     <nav class="header__menu">
-                    <a class="header__item {% if  mentor_reg %}header__item_active{% endif %}" href="{% url 'accounts:mentor_registration' %}">Регистрация</a>
-                    <a class="header__item {% if  login %}header__item_active{% endif %}" href="{% url 'accounts:login' %}">Войти</a>
-                </nav>
+                        <a class="header__item {% if  mentor_reg %}header__item_active{% endif %}" href="{% url 'accounts:mentor_registration' %}">Регистрация</a>
+                        <a class="header__item {% if  login %}header__item_active{% endif %}" href="{% url 'accounts:login' %}">Войти</a>
+                    </nav>
+                {% else %}
+                    <nav class="header__menu header__auth">
+                        <a class="header__item header__item-auth {% if  members %}header__item_active{% endif %}" href="">Список участников</a>
+                        <a class="header__item header__item-auth {% if  reg_param %}header__item_active{% endif %}" href="">Параметры рекомендаций</a>
+                        <a class="header__item header__item-auth {% if  main_page %}header__item_active{% endif %}" href="">Главная страница</a>
+                    </nav>
                 {% endif %}
 
             </div>
