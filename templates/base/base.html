@@ -39,6 +39,7 @@
                         <a class="header__item header__item-auth {% if  members %}header__item_active{% endif %}" href="">Список участников</a>
                         <a class="header__item header__item-auth {% if  reg_param %}header__item_active{% endif %}" href="">Параметры рекомендаций</a>
                         <a class="header__item header__item-auth {% if  main_page %}header__item_active{% endif %}" href="">Главная страница</a>
+                        <a class="header__item header__item-auth " href="{% url 'accounts:logout' %}">Выход</a>
                     </nav>
                 {% endif %}
 
