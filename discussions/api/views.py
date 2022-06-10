@@ -16,4 +16,4 @@ class ListDiscussionView(generics.ListAPIView):
                 User.objects.filter(profile__in=Profile.objects.filter(group__profile__user=self.request.user).all())
             ),
             is_general_discussions=False
-        ).order_by('change_date').all()
+        ).order_by('-change_date').all()
