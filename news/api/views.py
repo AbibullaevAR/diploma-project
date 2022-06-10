@@ -67,7 +67,7 @@ class ListNewsView(generics.ListAPIView):
             created_user__in=(
                 User.objects.filter(profile__in=Profile.objects.filter(group__profile__user=self.request.user).all())
             )
-        ).all()
+        ).all().order_by('-change_date')
 
 
 class CreateNewsView(generics.CreateAPIView):
