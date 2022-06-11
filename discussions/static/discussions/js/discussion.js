@@ -1,3 +1,5 @@
+import getCookie from "../../../../static/base/js/get_cookie";
+
 (function() {
 
 const discussionId = window.discussion_id;
@@ -67,7 +69,7 @@ async function uploadFile(event, callback) {
         reader.onload = async () => {
             const bufferReader = reader.result;
             fileName = file.name;
-            discussionId = window.discussion_id;
+            const discussionId = window.discussion_id;
             const url = '/attached_file/api/metaINF_file/';
             const XToken = getCookie('csrftoken');
             const dataSend = {
@@ -105,7 +107,7 @@ function addMessageFromServer(data) {
 
     const date = new Date(date_time);
     const containerAddMessage = document.querySelector('.discussion__message-wrapper');
-    createStructureMessage = messageStructure({
+    const createStructureMessage = messageStructure({
         message,
         name: user,
         date: date.toLocaleDateString(),
@@ -160,9 +162,4 @@ function addMessage() {
     return {
         isMessageAdd: false,
     }
-}
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
 }
