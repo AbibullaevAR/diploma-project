@@ -52,7 +52,9 @@ class UpdateTagUserChoiceView(generics.UpdateAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
 
     def get_object(self):
-        return TagUserChoice.objects.filter(id=self.request.query_params['pk']).first()
+        if tag := TagUserChoice.objects.filter(tag_id=self.request.query_params.get('pk')).first():
+            return tag
+        return TagUserChoice(user=self.request.user)
 
 
 class ListNewsView(generics.ListAPIView):
