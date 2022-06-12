@@ -21,7 +21,7 @@ class TagList(generics.ListCreateAPIView):
         return Tag.objects.filter(group=self.get_group_current_user()).all()
 
     def perform_create(self, serializer):
-        serializer.save(group=self.get_group_current_user())
+        self.created_instance = serializer.save(group=self.get_group_current_user())
 
     def get_group_current_user(self):
         """
@@ -29,6 +29,11 @@ class TagList(generics.ListCreateAPIView):
         :return: Group model obj
         """
         return Profile.objects.filter(user=self.request.user).first().group
+
+    def get_success_headers(self, data):
+        headers = super().get_success_headers(data)
+        headers['create_obj_pk'] = self.created_instance.pk
+        return headers
 
 
 class UpdateNewsTagView(generics.UpdateAPIView):
