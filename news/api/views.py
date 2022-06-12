@@ -5,7 +5,8 @@ from rest_framework import permissions
 
 from accounts.models import Profile
 from news.models import Tag, NewsModel, TagUserChoice
-from .serializers import TagSerializers, UpdateNewsTagSerializers, TagUserChoiceSerializers, ListNewsSerializers, CreateNewsSerializers
+from .serializers import TagSerializers, UpdateNewsTagSerializers, TagUserChoiceSerializers, ListNewsSerializers,\
+CreateNewsSerializers, NewsSerializers
 
 
 class TagList(generics.ListCreateAPIView):
@@ -84,3 +85,12 @@ class CreateNewsView(generics.CreateAPIView):
         headers['create_obj_pk'] = self.created_instance.pk
         return headers
 
+
+class UpdateNewsView(generics.UpdateAPIView):
+    serializer_class = NewsSerializers
+    permission_classes = [permissions.IsAuthenticated, ]
+
+    def get_object(self):
+        if news := NewsModel.objects.filter(pk=self.request.query_params.get('pk')).first():
+            return news
+        return NewsModel(created_user=self.request.user)

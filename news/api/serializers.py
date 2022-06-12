@@ -44,3 +44,10 @@ class CreateNewsSerializers(serializers.ModelSerializer):
     class Meta:
         model = NewsModel
         fields = ('title', 'body')
+
+
+class NewsSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = NewsModel
+        fields = ('title', 'body', 'tags')
