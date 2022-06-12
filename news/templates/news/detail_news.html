@@ -1,11 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{{ news.title }}
-{{ news.body }}
-</body>
-</html>
+{% extends 'base/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link href="{% static 'news/css/news.css' %}" rel="stylesheet" type="text/css">
+    <script defer type="module" src="{% static 'news/js/news.js' %}"></script>
+
+    <script >
+        window.objResultSelected = {
+        {% for tag in news_tags %}
+            {{ tag.pk }}:'{{ tag.name }}',
+        {% endfor %}
+        }
+        window.news_id = {{news.pk}}
+    </script>
+{% endblock head %}
+
+{% block main %}
+    <main class="news">
+        <div class="news__container">
+            <h2 class="news__container-header">
+                <input id="title" type="text" value="{{ news.title }}" placeholder="Название новости">
+            </h2>
+            <div class="news__container-body">
+                <textarea class="news__descrption news__descrption_border" >{{ news.body }}</textarea>
+
+            </div>
+            <div class="tags">
+                <div class="tags__container">
+                    <div class="tags__selects">
+                        <h2 class="tags__heading-selected">Выбранный тег</h2>
+                        <div class="tags__container-selects">
+                            {% for tag in tags %}
+                            <div class="tags__item-select" data-tag_id="{{ tag.pk }}" data-tag_name="{{ tag.name }}">
+                                {{ tag.name }}
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                        <div class="tags__container-add-tags">
+
+                        </div>
+                    </div>
+                    <div class="tags__add">
+                        <input id="tagText" type="text" placeholder="Введите название тега">
+                        <input id="addTagBtn" type="button" value="Добавить">
+                    </div>
+                </div>
+                <div class="send-button">
+                    <input type="button" value="Сохранить">
+                </div>
+            </div>
+            {% if news.created_user == user %}
+                <div class="news__container-edit">
+                    <div class="news__edit">
+
+                    </div>
+                    <div class="news__delete">
+
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+{% endblock main %}
