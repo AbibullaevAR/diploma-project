@@ -32,3 +32,9 @@ class NewsDetailView(LoginRequiredMixin, DetailView):
     template_name = 'news/detail_news.html'
     model = NewsModel
     context_object_name = 'news'
+
+    def get_context_data(self, **kwargs):
+        contex = super(NewsDetailView, self).get_context_data(**kwargs)
+        contex['tags'] = Tag.objects.filter(group__profile__user=self.request.user).all()
+        contex['news_tags'] = self.object.tags.all()
+        return contex
