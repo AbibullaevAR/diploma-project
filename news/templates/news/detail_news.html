@@ -3,6 +3,8 @@
 {% block head %}
     {% load static %}
     <link href="{% static 'news/css/news.css' %}" rel="stylesheet" type="text/css">
+
+    {% if news.created_user == user %}
     <script defer type="module" src="{% static 'news/js/news.js' %}"></script>
 
     <script >
@@ -13,21 +15,28 @@
         }
         window.news_id = {{news.pk}}
     </script>
+    {% endif %}
+
 {% endblock head %}
 
 {% block main %}
     <main class="news">
         <div class="news__container">
             <h2 class="news__container-header">
-                <input id="title" type="text" value="{{ news.title }}" placeholder="Название новости">
+                {% if news.created_user == user %}
+                <input id="title" type="text" value="{{ news.title }}"  placeholder="Название новости">
+                {% else %}
+                    <p>{{ news.title }}</p>
+                {% endif %}
             </h2>
             <div class="news__container-body">
-                <textarea class="news__descrption news__descrption_border" >{{ news.body }}</textarea>
+                <textarea class="news__descrption{% if news.created_user == user %} news__descrption_border{% endif %}" {% if news.created_user != user %} disabled{% endif %}>{{ news.body }}</textarea>
 
             </div>
             <div class="tags">
                 <div class="tags__container">
                     <div class="tags__selects">
+                    {% if news.created_user == user %}
                         <h2 class="tags__heading-selected">Выбранный тег</h2>
                         <div class="tags__container-selects">
                             {% for tag in tags %}
@@ -37,18 +46,29 @@
                             {% endfor %}
 
                         </div>
+                    {% endif %}
                         <div class="tags__container-add-tags">
-
+                        {% if news.created_user != user %}
+                            {% for tag in news_tags %}
+                                <div class="tags__edit">
+                                    <p class="tags__text">{{tag.name}}</p>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         </div>
                     </div>
+                {% if news.created_user == user %}
                     <div class="tags__add">
                         <input id="tagText" type="text" placeholder="Введите название тега">
                         <input id="addTagBtn" type="button" value="Добавить">
                     </div>
+                {% endif %}
                 </div>
+            {% if news.created_user == user %}
                 <div class="send-button">
                     <input type="button" value="Сохранить">
                 </div>
+            {% endif %}
             </div>
             {% if news.created_user == user %}
                 <div class="news__container-edit">

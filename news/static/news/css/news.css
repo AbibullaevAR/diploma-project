@@ -6,7 +6,7 @@
     position: relative;
 }
 .news__container p {
-    opacity: 0;
+    opacity: 1;
 }
 .news__container-header {
     text-align: center;
