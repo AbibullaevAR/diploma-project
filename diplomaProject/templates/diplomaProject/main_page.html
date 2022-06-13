@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for item in news %}
+        {{ item.title }}
+    {% endfor %}
+    {% for member in members %}
+        {{ member.username }}
+    {% endfor %}
+    {% for discussion in discussions %}
+        {{ discussion.name }}
+    {% endfor %}
+</body>
+</html>
