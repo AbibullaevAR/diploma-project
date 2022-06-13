@@ -14,7 +14,7 @@ from .mail_util import send_complete_reg_mail
 class MentorRegistrationView(FormView):
     template_name = 'accounts/MentorRegistrationTemplate.html'
     form_class = MentorRegistrationForm
-    success_url = reverse('accounts:login')
+    success_url = reverse_lazy('accounts:login')
 
     def form_valid(self, form):
         user = form.save(True)
@@ -30,7 +30,7 @@ class ChangeProfileView(LoginRequiredMixin, UpdateView):
     model = User
     fields = ('username', 'last_name', 'first_name')
     template_name = 'accounts/user_profile.html'
-    success_url = reverse('diplomaProject:main_page')
+    success_url = reverse_lazy('diplomaProject:main_page')
 
     def get_object(self, queryset=None):
         return self.request.user
