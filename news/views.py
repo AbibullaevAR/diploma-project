@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.views.generic.edit import UpdateView, CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -15,7 +15,7 @@ class CreateNewsView(LoginRequiredMixin, CreateView):
     model = NewsModel
     fields = ('title', 'body')
     template_name = 'news/create_news.html'
-    success_url = '/'
+    success_url = reverse('diplomaProject:main_page')
 
     def get_context_data(self, **kwargs):
         contex = super(CreateNewsView, self).get_context_data(**kwargs)
@@ -27,7 +27,7 @@ class UpdateNewsView(LoginRequiredMixin, UpdateView):
     model = NewsModel
     fields = ('title', 'body')
     template_name = 'news/update_news.html'
-    success_url = '/'
+    success_url = reverse('diplomaProject:main_page')
 
 
 class ListChoiceView(LoginRequiredMixin, ListView):
