@@ -115,6 +115,7 @@ import getCookie from "../../../../static/base/js/get_cookie.js";
             }
 
             await send_req(url, "PUT", dataSend)
+            window.location.href = '/diplomaProject/main_page'
     }
     async function addTag(){
 
