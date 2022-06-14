@@ -4,7 +4,7 @@
     <title>Обсуждение: {{ discussion.name }}</title>
     {% load static %}
     <link href="{% static '/discussions/css/discussion.css' %}" rel="stylesheet" type="text/css">
-    <script defer src="{%  static '/discussions/js/discussion.js' %}"></script>
+    <script defer type="module" src="{%  static '/discussions/js/discussion.js' %}"></script>
     <script>
         window.user_pk = {{ user.pk }};
         window.username = '{{ user.username }}';
