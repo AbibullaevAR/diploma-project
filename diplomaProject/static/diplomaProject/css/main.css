@@ -15,6 +15,7 @@
 .main__members {
     display: flex;
     flex: 1;
+    position: relative;
 }
 .main__news {
     flex: 2;
@@ -92,3 +93,15 @@ a {
     text-decoration: none;
     color: #034C7F;
 }
+.main__add-user {
+    position: absolute;
+    background-color: #5596c5;
+    padding: 15px;
+    width: 100%;
+    bottom: 66px;
+    display: none;
+}
+.main__add-user_open {
+    display: block;
+}
+

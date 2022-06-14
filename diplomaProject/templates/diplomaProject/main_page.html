@@ -4,6 +4,9 @@
     {% load static %}
     <link href="{% static 'discussions/css/discussion.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'diplomaProject/css/main.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'accounts/css/form.css' %}" rel="stylesheet" type="text/css">
+
+    <script defer type="module" src="{% static 'diplomaProject/js/main.js' %}"></script>
 
     <title>Главная страница</title>
 {% endblock head %}
@@ -112,6 +115,17 @@
                         </div>
                         {% if is_mentor %}
                             <div class="main__news-footer">
+                                <div class="main__add-user">
+                                    <div class="profile__container-body">
+                                        <div class="profile__container-item">
+                                            <label class="form__label" for="id_email">Email</label>
+                                            <input class="form__input addUserEmail" type="email" name="email" required="" id="id_email">
+                                        </div>
+                                        <div class="profile__container-send">
+                                            <input class="form__button" type="submit" value="Добавить">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="main__news__addNews">
                                     <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <mask id="path-1-inside-1_195_44" fill="white">
