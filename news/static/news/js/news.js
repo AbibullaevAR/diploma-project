@@ -1,4 +1,4 @@
-import getCookie from "../../../../static/base/js/get_cookie.js";
+import send_req from "../../../../static/base/js/send_req.js";
 (function(){
     let objResultSelected = {}
     if (window.objResultSelected) {
@@ -130,19 +130,6 @@ import getCookie from "../../../../static/base/js/get_cookie.js";
         const tagId = data.headers.get('create_obj_pk')
         objResultSelected[tagId] = tagName
         renderRezult()
-    }
-
-    async function send_req(url, method, dataSend) {
-        const XToken = getCookie('csrftoken');
-            const options = {
-                method: method,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': XToken
-                },
-                body: JSON.stringify(dataSend),
-            };
-            return await fetch(url, options);
     }
 
     renderRezult()
