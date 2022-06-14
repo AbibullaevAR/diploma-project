@@ -6,7 +6,7 @@ from .views import UpdateNewsView, ListChoiceView, NewsDetailView, CreateNewsVie
 app_name = 'news'
 urlpatterns = [
     path('update_news/<int:pk>', UpdateNewsView.as_view(), name='update_news'),
-    path('choice/', ListChoiceView.as_view(), name='list_choice'),
+    path('choice/', ListChoiceView.as_view(), name='choice'),
     path('detail_news/<int:pk>', NewsDetailView.as_view(), name='detail_news'),
     path('create_news/', CreateNewsView.as_view(), name='create_news'),
 
