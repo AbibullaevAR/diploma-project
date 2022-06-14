@@ -1,2 +1,39 @@
 
-{% include 'news/detail_news.html' %}
+{% include 'news/elements/news_page.html' %}
+
+{% block edit_head %}
+    {% load static %}
+        <script defer type="module" src="{% static 'news/js/news.js' %}"></script>
+{% endblock edit_head %}
+
+{% block news_title %}
+    <input id="title" type="text" value=""  placeholder="Название новости">
+{% endblock news_title %}
+
+{% block news_body %}
+    <textarea class="news__descrption news__descrption_border" ></textarea>
+{% endblock news_body %}
+
+{% block all_tags %}
+    <h2 class="tags__heading-selected">Выбранный тег</h2>
+    <div class="tags__container-selects">
+        {% for tag in tags %}
+        <div class="tags__item-select" data-tag_id="{{ tag.pk }}" data-tag_name="{{ tag.name }}">
+            {{ tag.name }}
+        </div>
+        {% endfor %}
+    </div>
+{% endblock all_tags %}
+
+{% block add_new_tag %}
+    <div class="tags__add">
+        <input id="tagText" type="text" placeholder="Введите название тега">
+        <input id="addTagBtn" type="button" value="Добавить">
+    </div>
+{% endblock add_new_tag %}
+
+{% block save_btn %}
+    <div class="send-button">
+        <input type="button" value="Сохранить">
+    </div>
+{% endblock save_btn %}

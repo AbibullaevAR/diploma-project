@@ -1,85 +1,84 @@
-{% extends 'base/base.html' %}
+{% extends 'news/elements/news_page.html' %}
 
-{% block head %}
-    {% load static %}
-    <link href="{% static 'news/css/news.css' %}" rel="stylesheet" type="text/css">
-
+{% block edit_head %}
     {% if news.created_user == user %}
-    <script defer type="module" src="{% static 'news/js/news.js' %}"></script>
+        {% load static %}
+        <script defer type="module" src="{% static 'news/js/news.js' %}"></script>
 
-    <script >
-        window.objResultSelected = {
-        {% for tag in news_tags %}
-            {{ tag.pk }}:'{{ tag.name }}',
-        {% endfor %}
-        }
-        window.news_id = {{news.pk}}
-    </script>
+        <script >
+            window.objResultSelected = {
+            {% for tag in news_tags %}
+                {{ tag.pk }}:'{{ tag.name }}',
+            {% endfor %}
+            }
+            window.news_id = {{news.pk}}
+        </script>
     {% endif %}
+{% endblock edit_head %}
 
-{% endblock head %}
+{% block news_title %}
+    {% if news.created_user == user %}
+            <input id="title" type="text" value="{{ news.title }}"  placeholder="Название новости">
+        {% else %}
+            <p>{{ news.title }}</p>
+    {% endif %}
+{% endblock news_title %}
 
-{% block main %}
-    <main class="news">
-        <div class="news__container">
-            <h2 class="news__container-header">
-                {% if news.created_user == user %}
-                <input id="title" type="text" value="{{ news.title }}"  placeholder="Название новости">
-                {% else %}
-                    <p>{{ news.title }}</p>
-                {% endif %}
-            </h2>
-            <div class="news__container-body">
-                <textarea class="news__descrption{% if news.created_user == user %} news__descrption_border{% endif %}" {% if news.created_user != user %} disabled{% endif %}>{{ news.body }}</textarea>
+{% block news_body %}
+    <textarea class="news__descrption{% if news.created_user == user %} news__descrption_border{% endif %}" {% if news.created_user != user %} disabled{% endif %}>{{ news.body }}</textarea>
+{% endblock news_body %}
 
+{% block all_tags %}
+    {% if news.created_user == user %}
+        <h2 class="tags__heading-selected">Выбранный тег</h2>
+        <div class="tags__container-selects">
+            {% for tag in tags %}
+            <div class="tags__item-select" data-tag_id="{{ tag.pk }}" data-tag_name="{{ tag.name }}">
+                {{ tag.name }}
             </div>
-            <div class="tags">
-                <div class="tags__container">
-                    <div class="tags__selects">
-                    {% if news.created_user == user %}
-                        <h2 class="tags__heading-selected">Выбранный тег</h2>
-                        <div class="tags__container-selects">
-                            {% for tag in tags %}
-                            <div class="tags__item-select" data-tag_id="{{ tag.pk }}" data-tag_name="{{ tag.name }}">
-                                {{ tag.name }}
-                            </div>
-                            {% endfor %}
+            {% endfor %}
 
-                        </div>
-                    {% endif %}
-                        <div class="tags__container-add-tags">
-                        {% if news.created_user != user %}
-                            {% for tag in news_tags %}
-                                <div class="tags__edit">
-                                    <p class="tags__text">{{tag.name}}</p>
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                        </div>
-                    </div>
-                {% if news.created_user == user %}
-                    <div class="tags__add">
-                        <input id="tagText" type="text" placeholder="Введите название тега">
-                        <input id="addTagBtn" type="button" value="Добавить">
-                    </div>
-                {% endif %}
-                </div>
-            {% if news.created_user == user %}
-                <div class="send-button">
-                    <input type="button" value="Сохранить">
-                </div>
-            {% endif %}
-            </div>
-            {% if news.created_user == user %}
-                <div class="news__container-edit">
-                    <div class="news__edit">
-
-                    </div>
-                    <div class="news__delete">
-
-                    </div>
-                </div>
-            {% endif %}
         </div>
-    </main>
-{% endblock main %}
+    {% endif %}
+{% endblock all_tags %}
+
+{% block news_tag %}
+    {% if news.created_user != user %}
+        {% for tag in news_tags %}
+            <div class="tags__edit">
+                <p class="tags__text">{{tag.name}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock news_tag %}
+
+{% block add_new_tag %}
+    {% if news.created_user == user %}
+        <div class="tags__add">
+            <input id="tagText" type="text" placeholder="Введите название тега">
+            <input id="addTagBtn" type="button" value="Добавить">
+        </div>
+    {% endif %}
+{% endblock add_new_tag %}
+
+{% block save_btn %}
+    {% if news.created_user == user %}
+        <div class="send-button">
+            <input type="button" value="Сохранить">
+        </div>
+    {% endif %}
+{% endblock save_btn %}
+
+{% block edit_item %}
+    {% if news.created_user == user %}
+        <div class="news__container-edit">
+            <div class="news__edit">
+
+            </div>
+            <div class="news__delete">
+
+            </div>
+        </div>
+    {% endif %}
+{% endblock edit_item %}
+

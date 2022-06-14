@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link href="{% static 'news/css/news.css' %}" rel="stylesheet" type="text/css">
+
+    {% block edit_head %}
+    {% endblock edit_head %}
+
+{% endblock head %}
+
+{% block main %}
+    <main class="news">
+        <div class="news__container">
+            <h2 class="news__container-header">
+                {% block news_title %}
+                {% endblock news_title %}
+            </h2>
+            <div class="news__container-body">
+                {% block news_body %}
+                {% endblock news_body %}
+            </div>
+            <div class="tags">
+                <div class="tags__container">
+                    <div class="tags__selects">
+                        {% block all_tags %}
+                        {% endblock all_tags %}
+                        <div class="tags__container-add-tags">
+                        {% block news_tag %}
+                        {% endblock news_tag %}
+                        </div>
+                    </div>
+                {% block add_new_tag %}
+                {% endblock add_new_tag %}
+                </div>
+                {% block save_btn %}
+                {% endblock save_btn %}
+            </div>
+            {% block edit_item %}
+            {% endblock edit_item %}
+        </div>
+    </main>
+{% endblock main %}
