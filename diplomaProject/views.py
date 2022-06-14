@@ -12,16 +12,16 @@ class MainPageView(LoginRequiredMixin, TemplateView):
     template_name = 'diplomaProject/main_page.html'
 
     def get_context_data(self, **kwargs):
-        contex = super(MainPageView, self).get_context_data(**kwargs)
+        context = super(MainPageView, self).get_context_data(**kwargs)
 
-        contex['discussions'] = Discussions.objects.filter(
+        context['discussions'] = Discussions.objects.filter(
             created_user__in=(
                 User.objects.filter(profile__in=Profile.objects.filter(group__profile__user=self.request.user).all())
             ),
             is_general_discussions=False
         ).order_by('-change_date').all()
 
-        contex['news'] = NewsModel.objects.filter(
+        context['news'] = NewsModel.objects.filter(
             ~Q(tags__in=
                 [item.tag for item in TagUserChoice.objects.filter(user=self.request.user, choice=False).all()]
                ),
@@ -30,7 +30,8 @@ class MainPageView(LoginRequiredMixin, TemplateView):
             )
         ).all().order_by('-change_date')
 
-        contex['members'] = User.objects.filter(
+        context['members'] = User.objects.filter(
             profile__in=Profile.objects.filter(group__profile__user=self.request.user).all()
         )
-        return contex
+        context['is_mentor'] = self.request.user.has_perm('accounts.mentor')
+        return context
