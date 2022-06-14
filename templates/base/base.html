@@ -36,9 +36,9 @@
                     </nav>
                 {% else %}
                     <nav class="header__menu header__auth">
-                        <a class="header__item header__item-auth {% if  members %}header__item_active{% endif %}" href="">Список участников</a>
-                        <a class="header__item header__item-auth {% if  reg_param %}header__item_active{% endif %}" href="">Параметры рекомендаций</a>
-                        <a class="header__item header__item-auth {% if  main_page %}header__item_active{% endif %}" href="">Главная страница</a>
+                        <a class="header__item header__item-auth"  href="{% url 'accounts:profile_change' pk=1 %}">Профиль</a>
+                        <a class="header__item header__item-auth"  href="{% url 'news:choice' %}">Параметры рекомендаций</a>
+                        <a class="header__item header__item-auth"  href="{% url 'diplomaProject:main_page' %}">Главная страница</a>
                         <a class="header__item header__item-auth " href="{% url 'accounts:logout' %}">Выход</a>
                     </nav>
                 {% endif %}
