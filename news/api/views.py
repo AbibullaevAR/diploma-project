@@ -58,7 +58,9 @@ class UpdateTagUserChoiceView(generics.UpdateAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
 
     def get_object(self):
-        if tag := TagUserChoice.objects.filter(tag_id=self.request.query_params.get('pk')).first():
+        if tag := TagUserChoice.objects.filter(
+                tag_id=self.request.query_params.get('pk'), user=self.request.user
+        ).first():
             return tag
         return TagUserChoice(user=self.request.user)
 

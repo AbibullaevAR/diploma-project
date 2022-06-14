@@ -23,9 +23,7 @@
                                 {{ tag.name }}
                             </div>
                             <label class="switch">
-                                <input type="checkbox" class="checkbox" {% if tag.taguserchoice_set.get.user == user %}{% if tag.taguserchoice_set.get.choice %}
-                                checked="checked"
-                                {% endif %} {% else %}checked="checked"{% endif %} data-tag_id="{{ tag.pk }}">
+                                <input type="checkbox" class="checkbox" {% if tag not in tags_choice_false %}checked="checked"{% endif %} data-tag_id="{{ tag.pk }}">
                                 <span class="slider round"></span>
                             </label>
                         </div>

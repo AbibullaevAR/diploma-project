@@ -6,7 +6,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from accounts.models import Profile
-from .models import Tag, NewsModel
+from .models import Tag, NewsModel, TagUserChoice
 from .forms import CreateNewsForm
 
 
@@ -37,6 +37,13 @@ class ListChoiceView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Tag.objects.filter(group__profile__user=self.request.user)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ListChoiceView, self).get_context_data(**kwargs)
+        context['tags_choice_false'] = Tag.objects.filter(
+            taguserchoice__in=TagUserChoice.objects.filter(user=self.request.user, choice=False)
+        ).all()
+        return context
 
 
 class NewsDetailView(LoginRequiredMixin, DetailView):
