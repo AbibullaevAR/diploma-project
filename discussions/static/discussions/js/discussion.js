@@ -1,4 +1,4 @@
-import getCookie from "../../../../static/base/js/get_cookie";
+import getCookie from "../../../../static/base/js/get_cookie.js";
 
 (function() {
 
