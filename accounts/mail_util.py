@@ -7,7 +7,7 @@ def send_complete_reg_mail(scheme, host, email):
         'Вы зарегистрировали аккаунт в diploma project для завершения регистрации перейдите по ссылке и сбросте ' +
         f'пароль используйте ваш email в качестве username. {scheme}://{host}/accounts/' +
         'rest_password_start/',
-        'diploma project@',
+        None,
         [email, ],
         fail_silently=False
     )
