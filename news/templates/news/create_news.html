@@ -1,5 +1,5 @@
 
-{% include 'news/elements/news_page.html' %}
+{% extends 'news/elements/news_page.html' %}
 
 {% block edit_head %}
     {% load static %}
@@ -27,13 +27,13 @@
 
 {% block add_new_tag %}
     <div class="tags__add">
-        <input id="tagText" type="text" placeholder="Введите название тега">
-        <input id="addTagBtn" type="button" value="Добавить">
+        <input class="form__input" id="tagText" type="text" placeholder="Введите название тега">
+        <input class="form__button" id="addTagBtn" type="button" value="Добавить">
     </div>
 {% endblock add_new_tag %}
 
 {% block save_btn %}
     <div class="send-button">
-        <input type="button" value="Сохранить">
+        <input class="form__button" type="button" value="Сохранить">
     </div>
 {% endblock save_btn %}

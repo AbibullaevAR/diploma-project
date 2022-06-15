@@ -121,3 +121,8 @@
     width: 100%;
 
 }
+.tags__container-add-tags .form__button {
+    width: auto;
+    padding: 5px;
+    cursor: auto;
+}

@@ -45,7 +45,7 @@
 {% block news_tag %}
     {% if news.created_user != user %}
         {% for tag in news_tags %}
-            <div class="tags__edit">
+            <div class="tags__edit form__button">
                 <p class="tags__text">{{tag.name}}</p>
             </div>
         {% endfor %}
@@ -55,8 +55,8 @@
 {% block add_new_tag %}
     {% if news.created_user == user %}
         <div class="tags__add">
-            <input id="tagText" type="text" placeholder="Введите название тега">
-            <input id="addTagBtn" type="button" value="Добавить">
+            <input class="form__input" id="tagText" type="text" placeholder="Введите название тега">
+            <input class="form__button" id="addTagBtn" type="button" value="Добавить">
         </div>
     {% endif %}
 {% endblock add_new_tag %}
@@ -64,7 +64,7 @@
 {% block save_btn %}
     {% if news.created_user == user %}
         <div class="send-button">
-            <input type="button" value="Сохранить">
+            <input class="form__button" type="button" value="Сохранить">
         </div>
     {% endif %}
 {% endblock save_btn %}

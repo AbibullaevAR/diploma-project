@@ -70,7 +70,7 @@ import send_req from "../../../../static/base/js/send_req.js";
     }
     function createResultItemStructure (dataRezult){
         const {tag_id, tag_name} = dataRezult
-        return `<div class="tags__edit">
+        return `<div class="form__button tags__edit">
         <p class="tags__text">${tag_name}</p>
         <div class="tags__delete" data-tag_id="${tag_id}">
             X
