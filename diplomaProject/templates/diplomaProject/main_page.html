@@ -36,14 +36,7 @@
                         <div class="main__news-footer">
                             <div class="main__news__addNews">
                                 <a href="{% url 'discussions:create_discussion' %}">
-                                <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <mask id="path-1-inside-1_195_44" fill="white">
-                                    <ellipse cx="11.5" cy="11" rx="11.5" ry="11"/>
-                                    </mask>
-                                    <path d="M2 11C2 4.60719 7.14281 1 11.5 1V43C28.5597 43 44 29.5431 44 11H2ZM11.5 1C15.8572 1 21 4.60719 21 11H-21C-21 29.5431 -5.55974 43 11.5 43V1ZM21 11C21 17.3928 15.8572 21 11.5 21V-21C-5.55974 -21 -21 -7.54308 -21 11H21ZM11.5 21C7.14281 21 2 17.3928 2 11H44C44 -7.54308 28.5597 -21 11.5 -21V21Z" fill="black" mask="url(#path-1-inside-1_195_44)"/>
-                                    <line x1="11.5" y1="5" x2="11.5" y2="16" stroke="black" stroke-width="3"/>
-                                    <line x1="6" y1="10.5" x2="17" y2="10.5" stroke="black" stroke-width="3"/>
-                                    </svg>
+                                    <img src="{% static 'base/img/add_icon.svg' %}" alt="logo">
                                 </a>
                             </div>
                         </div>
@@ -72,14 +65,7 @@
                     <div class="main__news-footer">
                         <div class="main__news__addNews">
                             <a href="{% url 'news:create_news' %}">
-                            <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <mask id="path-1-inside-1_195_44" fill="white">
-                                <ellipse cx="11.5" cy="11" rx="11.5" ry="11"/>
-                                </mask>
-                                <path d="M2 11C2 4.60719 7.14281 1 11.5 1V43C28.5597 43 44 29.5431 44 11H2ZM11.5 1C15.8572 1 21 4.60719 21 11H-21C-21 29.5431 -5.55974 43 11.5 43V1ZM21 11C21 17.3928 15.8572 21 11.5 21V-21C-5.55974 -21 -21 -7.54308 -21 11H21ZM11.5 21C7.14281 21 2 17.3928 2 11H44C44 -7.54308 28.5597 -21 11.5 -21V21Z" fill="black" mask="url(#path-1-inside-1_195_44)"/>
-                                <line x1="11.5" y1="5" x2="11.5" y2="16" stroke="black" stroke-width="3"/>
-                                <line x1="6" y1="10.5" x2="17" y2="10.5" stroke="black" stroke-width="3"/>
-                                </svg>
+                                <img src="{% static 'base/img/add_icon.svg' %}" alt="logo">
                             </a>
                         </div>
                     </div>
@@ -98,14 +84,7 @@
                             {% for member in members %}
                                 <div class="discussion__item">
                                     <a>
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="8" cy="8" r="7.25" stroke="black" stroke-width="1.5"/>
-                                            <mask id="path-2-inside-1_194_19" fill="white">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.82861 13.0909C3.29595 11.2031 5.51573 10 7.99999 10C10.4843 10 12.7041 11.2031 14.1714 13.0909C12.7041 14.8677 10.4843 16 8.00004 16C5.51575 16 3.29595 14.8676 1.82861 13.0909Z"/>
-                                            </mask>
-                                            <path d="M1.82861 13.0909L1.03907 12.4772L0.547327 13.1098L1.05756 13.7277L1.82861 13.0909ZM14.1714 13.0909L14.9425 13.7277L15.4527 13.1099L14.961 12.4773L14.1714 13.0909ZM2.61815 13.7046C3.9127 12.0391 5.85059 11 7.99999 11V9C5.18087 9 2.6792 10.3671 1.03907 12.4772L2.61815 13.7046ZM7.99999 11C10.1494 11 12.0873 12.0391 13.3819 13.7046L14.961 12.4773C13.3208 10.3672 10.8191 9 7.99999 9V11ZM13.4004 12.4542C12.1149 14.0107 10.1734 15 8.00004 15V17C10.7952 17 13.2933 15.7246 14.9425 13.7277L13.4004 12.4542ZM8.00004 15C5.82665 15 3.88517 14.0107 2.59966 12.4541L1.05756 13.7277C2.70672 15.7246 5.20486 17 8.00004 17V15Z" fill="black" mask="url(#path-2-inside-1_194_19)"/>
-                                            <circle cx="8" cy="6" r="2.5" stroke="black"/>
-                                        </svg>
+                                        <img src="{% static 'base/img/member_icon.svg' %}" alt="logo">
                                         <p>
                                             {{ member.username }}
                                         </p>
@@ -127,14 +106,7 @@
                                     </div>
                                 </div>
                                 <div class="main__news__addNews">
-                                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <mask id="path-1-inside-1_195_44" fill="white">
-                                        <ellipse cx="11.5" cy="11" rx="11.5" ry="11"/>
-                                        </mask>
-                                        <path d="M2 11C2 4.60719 7.14281 1 11.5 1V43C28.5597 43 44 29.5431 44 11H2ZM11.5 1C15.8572 1 21 4.60719 21 11H-21C-21 29.5431 -5.55974 43 11.5 43V1ZM21 11C21 17.3928 15.8572 21 11.5 21V-21C-5.55974 -21 -21 -7.54308 -21 11H21ZM11.5 21C7.14281 21 2 17.3928 2 11H44C44 -7.54308 28.5597 -21 11.5 -21V21Z" fill="black" mask="url(#path-1-inside-1_195_44)"/>
-                                        <line x1="11.5" y1="5" x2="11.5" y2="16" stroke="black" stroke-width="3"/>
-                                        <line x1="6" y1="10.5" x2="17" y2="10.5" stroke="black" stroke-width="3"/>
-                                        </svg>
+                                    <img src="{% static 'base/img/add_icon.svg' %}" alt="logo">
                                 </div>
                             </div>
                         {% endif %}

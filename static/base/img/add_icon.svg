@@ -1,0 +1,8 @@
+<svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <mask id="path-1-inside-1_195_44" fill="white">
+                                    <ellipse cx="11.5" cy="11" rx="11.5" ry="11"/>
+                                    </mask>
+                                    <path d="M2 11C2 4.60719 7.14281 1 11.5 1V43C28.5597 43 44 29.5431 44 11H2ZM11.5 1C15.8572 1 21 4.60719 21 11H-21C-21 29.5431 -5.55974 43 11.5 43V1ZM21 11C21 17.3928 15.8572 21 11.5 21V-21C-5.55974 -21 -21 -7.54308 -21 11H21ZM11.5 21C7.14281 21 2 17.3928 2 11H44C44 -7.54308 28.5597 -21 11.5 -21V21Z" fill="black" mask="url(#path-1-inside-1_195_44)"/>
+                                    <line x1="11.5" y1="5" x2="11.5" y2="16" stroke="black" stroke-width="3"/>
+                                    <line x1="6" y1="10.5" x2="17" y2="10.5" stroke="black" stroke-width="3"/>
+</svg>
