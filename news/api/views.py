@@ -5,8 +5,7 @@ from rest_framework import permissions
 
 from accounts.models import Profile
 from news.models import Tag, NewsModel, TagUserChoice
-from .serializers import TagSerializers, UpdateNewsTagSerializers, TagUserChoiceSerializers, ListNewsSerializers,\
-CreateNewsSerializers, NewsSerializers
+from .serializers import TagSerializers, UpdateNewsTagSerializers, TagUserChoiceSerializers, NewsSerializers
 
 
 class TagList(generics.ListCreateAPIView):
@@ -45,14 +44,6 @@ class UpdateNewsTagView(generics.UpdateAPIView):
         return NewsModel.objects.filter(id=self.request.query_params['pk']).first()
 
 
-class CreateTagUserChoiceView(generics.CreateAPIView):
-    serializer_class = TagUserChoiceSerializers
-    permission_classes = [permissions.IsAuthenticated, ]
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-
 class UpdateTagUserChoiceView(generics.UpdateAPIView):
     serializer_class = TagUserChoiceSerializers
     permission_classes = [permissions.IsAuthenticated, ]
@@ -63,34 +54,6 @@ class UpdateTagUserChoiceView(generics.UpdateAPIView):
         ).first():
             return tag
         return TagUserChoice(user=self.request.user)
-
-
-class ListNewsView(generics.ListAPIView):
-    serializer_class = ListNewsSerializers
-    permission_classes = [permissions.IsAuthenticated, ]
-
-    def get_queryset(self):
-        return NewsModel.objects.filter(
-            ~Q(tags__in=
-                [item.tag for item in TagUserChoice.objects.filter(user=self.request.user, choice=False).all()]
-               ),
-            created_user__in=(
-                User.objects.filter(profile__in=Profile.objects.filter(group__profile__user=self.request.user).all())
-            )
-        ).all().order_by('-change_date')
-
-
-class CreateNewsView(generics.CreateAPIView):
-    serializer_class = CreateNewsSerializers
-    permission_classes = [permissions.IsAuthenticated, ]
-
-    def perform_create(self, serializer):
-        self.created_instance = serializer.save(created_user=self.request.user)
-
-    def get_success_headers(self, data):
-        headers = super().get_success_headers(data)
-        headers['create_obj_pk'] = self.created_instance.pk
-        return headers
 
 
 class UpdateNewsView(generics.UpdateAPIView):

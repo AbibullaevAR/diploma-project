@@ -28,13 +28,6 @@ class CreateDiscussionView(LoginRequiredMixin, CreateView):
         return super(CreateDiscussionView, self).form_valid(form)
 
 
-class UpdateDiscussionView(LoginRequiredMixin, UpdateView):
-    model = Discussions
-    fields = ('name',)
-    template_name = 'discussions/update_discussion.html'
-    success_url = reverse_lazy('diplomaProject:main_page')
-
-
 class DetailDiscussionView(LoginRequiredMixin, DetailView):
     model = Discussions
     template_name = 'discussions/detail_discussion.html'
@@ -48,16 +41,4 @@ class DetailDiscussionView(LoginRequiredMixin, DetailView):
             profile__in=Profile.objects.filter(group__profile__user=self.request.user).all()
         ).all()
         return context
-
-
-class DelateDiscussionView(LoginRequiredMixin, DeleteView):
-    model = Discussions
-    template_name = 'discussions/delate_discussion.html'
-    success_url = reverse_lazy('diplomaProject:main_page')
-
-    def form_valid(self, form):
-        if self.request.user != self.get_object().created_user:
-            return self.handle_no_permission()
-
-        return super(DelateDiscussionView, self).form_valid(form)
 

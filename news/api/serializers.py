@@ -1,5 +1,3 @@
-from abc import ABC
-
 from rest_framework import serializers
 
 from news.models import Tag, NewsModel, TagUserChoice
@@ -30,20 +28,6 @@ class TagUserChoiceSerializers(serializers.ModelSerializer):
     class Meta:
         model = TagUserChoice
         fields = ('tag', 'choice')
-
-
-class ListNewsSerializers(serializers.ModelSerializer):
-
-    class Meta:
-        model = NewsModel
-        fields = ('id', 'title', )
-
-
-class CreateNewsSerializers(serializers.ModelSerializer):
-
-    class Meta:
-        model = NewsModel
-        fields = ('title', 'body')
 
 
 class NewsSerializers(serializers.ModelSerializer):

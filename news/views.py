@@ -24,13 +24,6 @@ class CreateNewsView(LoginRequiredMixin, CreateView):
         return contex
 
 
-class UpdateNewsView(LoginRequiredMixin, UpdateView):
-    model = NewsModel
-    fields = ('title', 'body')
-    template_name = 'news/update_news.html'
-    success_url = reverse_lazy('diplomaProject:main_page')
-
-
 class ListChoiceView(LoginRequiredMixin, ListView):
     template_name = 'news/list_choice.html'
     context_object_name = 'tags'
