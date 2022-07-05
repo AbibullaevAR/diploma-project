@@ -150,11 +150,13 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Default redirect after login/logout
+
 LOGIN_REDIRECT_URL = '/diplomaProject/main_page'
 LOGOUT_REDIRECT_URL = '/diplomaProject/main_page'
 
 # Send mail
-# Use mail smpt server
+# Use gmail smpt server
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
