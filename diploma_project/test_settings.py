@@ -161,3 +161,9 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # External storage settings
 
 EXTERNAL_STORAGE_TOKEN = os.environ.get('EXTERNAL_STORAGE_TOKEN')
+
+# DRF settings
+
+REST_FRAMEWORK = {
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
