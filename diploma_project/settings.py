@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = ['*', ]
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -82,7 +82,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
+            "hosts": [(os.environ.get('REDIS_HOST'), os.environ.get('REDIS_PORT'))],
         },
     },
 }
@@ -90,21 +90,14 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'diploma_project_db',
-        'USER': 'django_local_user',
-        'PASSWORD': 'local_user',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.environ.get('DATABASES_NAME'),
+        'USER': os.environ.get('DATABASES_USER'),
+        'PASSWORD': os.environ.get('DATABASES_PASSWORD'),
+        'HOST': os.environ.get('DATABASES_HOST'),
+        'PORT': os.environ.get('DATABASES_PORT'),
     }
 }
 
@@ -158,7 +151,7 @@ LOGOUT_REDIRECT_URL = '/diplomaProject/main_page'
 # Send mail
 # Use gmail smpt server
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -168,3 +161,9 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # External storage settings
 
 EXTERNAL_STORAGE_TOKEN = os.environ.get('EXTERNAL_STORAGE_TOKEN')
+
+# DRF settings
+
+REST_FRAMEWORK = {
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
