@@ -60,6 +60,7 @@ coverage.xml
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+production/
 
 # Flask stuff:
 instance/
@@ -128,4 +129,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# IDE files
 .idea/
+
+# Local run project
+run_daphne_server.bat
