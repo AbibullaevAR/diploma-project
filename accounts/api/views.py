@@ -11,6 +11,12 @@ class CreateStudentUserView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
 
     def perform_create(self, serializer):
+        """
+        Save user in db and send complete registration letter.
+
+        :param serializer:
+        :return: None
+        """
         created_user = serializer.save(username=serializer.validated_data['email'])
 
         Profile(user=created_user, group=Group.objects.filter(profile__user=self.request.user).first()).save()

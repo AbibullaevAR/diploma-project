@@ -9,6 +9,9 @@ from .models import UserFiles
 
 
 class UserFileDetailView(LoginRequiredMixin, DetailView):
+    """
+    Return download link for chosen file.
+    """
     model = UserFiles
 
     def get(self, request, *args, **kwargs):

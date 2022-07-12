@@ -10,6 +10,9 @@ from discussions.models import Discussions, Message
 
 
 class ChatConsumer(WebsocketConsumer):
+    """
+    Consumer for chat logic.
+    """
 
     def connect(self):
 
@@ -32,6 +35,14 @@ class ChatConsumer(WebsocketConsumer):
         )
 
     def receive(self, text_data=None, bytes_data=None):
+        """
+        Handler when user send message in chat.
+
+        :param text_data: include message body and sending user information
+        :type text_data: Union[str, bytes]
+        :param bytes_data:
+        :return: None
+        """
         text_data_json = json.loads(text_data)
         text_message = text_data_json['text_message']
 
@@ -48,6 +59,12 @@ class ChatConsumer(WebsocketConsumer):
         )
 
     def chat_message(self, event):
+        """
+        Need for send message in all user in chat.
+
+        :param event:
+        :return: None
+        """
         message = event['message']
         sending_username = event['sending_user']
         user_id = User.objects.filter(username=sending_username).first().pk

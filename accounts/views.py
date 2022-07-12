@@ -17,6 +17,13 @@ class MentorRegistrationView(FormView):
     success_url = reverse_lazy('accounts:login')
 
     def form_valid(self, form):
+        """
+        Overwrite super class method save form and send complete registration letter.
+
+        :param form: form with valid data.
+        :type form: MentorRegistrationForm.
+        :return: data super form_valid method.
+        """
         user = form.save(True)
 
         send_complete_reg_mail(self.request.scheme, self.request.get_host(), user.email)
@@ -36,6 +43,13 @@ class ChangeProfileView(LoginRequiredMixin, UpdateView):
         return self.request.user
 
     def get_context_data(self, **kwargs):
+        """
+        Overwrite super class method get_context_data and add in context group name for request user.
+
+        :param kwargs:
+        :return: context data
+        :rtype: dict
+        """
         context = super(ChangeProfileView, self).get_context_data(**kwargs)
         context['group'] = self.request.user.profile_set.first().group.group_name
         return context
