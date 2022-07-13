@@ -1,0 +1,52 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test_backend:
+    services:
+      db:
+        image: postgres:10.8
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run Tests
+      env:
+        PYTHONUNBUFFERED: 1
+        DJANGO_SETTINGS_MODULE: diploma_project.settings
+        SECRET_KEY: dev
+        EMAIL_HOST_USER: ''
+        EMAIL_HOST_PASSWORD: ''
+        EXTERNAL_STORAGE_TOKEN: test
+        DATABASES_NAME: postgres
+        DATABASES_USER: postgres
+        DATABASES_PASSWORD: postgres
+        DATABASES_HOST: localhost
+        DATABASES_PORT: 5432
+        REDIS_HOST: 127.0.0.1
+        REDIS_PORT: 6379
+        DEBUG: True
+        EMAIL_BACKEND: django.core.mail.backends.console.emailbackend
+        ALLOWED_HOSTS: ['127.0.0.1:*']
+        STATIC_URL: /production/static/
+        STATIC_ROOT: production/static/
+      run: |
+        python manage.py test
