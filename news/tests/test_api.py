@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.models import User
 from django.urls import reverse
 from rest_framework import status
@@ -31,20 +33,12 @@ class TagListTest(APITestCase):
 
         tags = Tag.objects.all()
 
-        self.assertEqual(resp.data, [
-            {
-                'id': tags[0].pk,
-                'name': 'tag1'
-            },
-            {
-                'id': tags[1].pk,
-                'name': 'tag2'
-            },
-            {
-                'id': tags[2].pk,
-                'name': 'tag3'
-            }
-        ])
+        self.assertEqual(
+            str(resp.data),
+            f"[OrderedDict([('id', {tags[0].pk}), ('name', '{tags[0].name}')]), " +
+            f"OrderedDict([('id', {tags[1].pk}), ('name', '{tags[1].name}')]), " +
+            f"OrderedDict([('id', {tags[2].pk}), ('name', '{tags[2].name}')])]"
+        )
 
     def test_get_request_with_pk(self):
         self.client.force_login(User.objects.first())
