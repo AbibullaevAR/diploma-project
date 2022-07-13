@@ -35,9 +35,9 @@ class TagListTest(APITestCase):
 
         self.assertEqual(
             str(resp.data),
-            f"[OrderedDict([('id', {tags[0].pk}), ('name', '{tags[0].name}')]), " +
+            f"[OrderedDict([('id', {tags[2].pk}), ('name', '{tags[2].name}')]), " +
             f"OrderedDict([('id', {tags[1].pk}), ('name', '{tags[1].name}')]), " +
-            f"OrderedDict([('id', {tags[2].pk}), ('name', '{tags[2].name}')])]"
+            f"OrderedDict([('id', {tags[0].pk}), ('name', '{tags[0].name}')])]"
         )
 
     def test_get_request_with_pk(self):
