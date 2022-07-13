@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 1300px;
+    width: 100%;
+    margin: 0 auto;
+}
+.main__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+}
+@font-face {
+    font-family: RobotMedium;
+    src: url('/static/base/fonts/Roboto-Medium.ttf');
+   }
+@font-face {
+    font-family: RobotBold;
+    src: url('/static/base/fonts/Roboto-Bold.ttf');
+   }

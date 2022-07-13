@@ -1,0 +1,128 @@
+.news__container {
+    font-family: RobotLight;
+    max-width: 1000px;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+}
+.news__container p {
+    opacity: 1;
+}
+.news__container-header {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.news__container-header input {
+    font-size: large;
+    border: none;
+}
+.news__container p {
+    text-align: justify;
+    line-height: 24px;
+}
+.news__container-edit {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.news__edit {
+    height: 20px;
+    width: 20px;
+    background-color: red;
+}
+.news__delete {
+    height: 20px;
+    width: 20px;
+    background-color: orange;
+}
+.news__descrption {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    text-align: justify;
+    border: none;
+    outline: none;
+    background-color: white;
+    resize: none;
+    padding: 15px;
+}
+.news__descrption_border {
+    border: 1px solid black;
+}
+.tags__heading-selected {
+    font-size: 16px;
+    margin: 0;
+    padding: 10px 15px;
+    border: 1px solid black;
+
+}
+.tags__selects {
+    max-width: 435px;
+    width: 100%;
+}
+.tags__container-selects {
+    display: none;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 250px;
+    overflow: auto;
+}
+.tags__item-select {
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+.tags__item-select:last-child {
+    border-bottom: none;
+}
+.tags__item-select:hover {
+    opacity: 0.75;
+    cursor: pointer;
+}
+.tags__edit .tags__text {
+    margin-right: 15px;
+     opacity: 1;
+}
+.tags__edit {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+
+}
+.tags__delete {
+    cursor: pointer;
+
+}
+.tags__container-add-tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+.tags__container-selects_open {
+    display: block;
+}
+.tags__heading-selected:hover {
+    cursor: pointer;
+}
+.tags__container {
+    display: flex;
+    justify-content: space-between;
+}
+.send-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.send-button input {
+    padding: 10px;
+    max-width: 200px;
+    width: 100%;
+
+}
+.tags__container-add-tags .form__button {
+    width: auto;
+    padding: 5px;
+    cursor: auto;
+}
