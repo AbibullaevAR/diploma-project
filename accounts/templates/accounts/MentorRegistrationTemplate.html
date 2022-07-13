@@ -1,0 +1,30 @@
+{% include 'base/base.html' with mentor_reg=True %}
+
+{% block head %}
+    {% load static %}
+    <link href="{% static '/accounts/css/form.css' %}" rel="stylesheet" type="text/css">
+    <title>Регистрация куратора</title>
+{% endblock head %}
+
+{% block main %}
+<main class="main">
+        <div class="container">
+            <div class="reg-mentor__main main__container">
+                <form method="post" class="form">
+                    {% csrf_token %}
+                    <h2 class="form__heading">Регистрация</h2>
+                    <div class="form__container">
+                        <label class="form__label" for="id_email">Введите ваш email</label>
+                        <input class="form__input" type="email" name="email" required="" id="id_email" placeholder="Email">
+                    </div>
+                    <div class="form__container">
+                        <label class="form__label" for="id_group">Введите вашу группу</label>
+                        <input class="form__input" type="text" name="group" required="" id="id_group" placeholder="Группа">
+                    </div>
+
+                    <input class="form__button" type="submit" value="Создать">
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock main %}

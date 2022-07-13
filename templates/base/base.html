@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link href="{% static 'base/css/common.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'base/css/header.css' %}" rel="stylesheet" type="text/css">
+
+
+    {% block head %}
+        <title>Document</title>
+    {% endblock head %}
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__container">
+
+                <div class="header__logo">
+                    <img src="{% static 'base/img/general_logo.svg' %}" alt="logo">
+                </div>
+
+                {% if user.is_anonymous %}
+                    <nav class="header__menu">
+                        <a class="header__item {% if  mentor_reg %}header__item_active{% endif %}" href="{% url 'accounts:mentor_registration' %}">Регистрация</a>
+                        <a class="header__item {% if  login %}header__item_active{% endif %}" href="{% url 'accounts:login' %}">Войти</a>
+                    </nav>
+                {% else %}
+                    <nav class="header__menu header__auth">
+                        <a class="header__item header__item-auth"  href="{% url 'accounts:profile_change' pk=1 %}">Профиль</a>
+                        <a class="header__item header__item-auth"  href="{% url 'news:choice' %}">Параметры рекомендаций</a>
+                        <a class="header__item header__item-auth"  href="{% url 'diplomaProject:main_page' %}">Главная страница</a>
+                        <a class="header__item header__item-auth " href="{% url 'accounts:logout' %}">Выход</a>
+                    </nav>
+                {% endif %}
+
+            </div>
+        </div>
+
+    </header>
+    {% block main %}
+    {% endblock main %}
+</body>
+</html>

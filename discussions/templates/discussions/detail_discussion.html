@@ -1,0 +1,100 @@
+{% extends 'base/base.html' %}
+
+{% block head %}
+    <title>Обсуждение: {{ discussion.name }}</title>
+    {% load static %}
+    <link href="{% static '/discussions/css/discussion.css' %}" rel="stylesheet" type="text/css">
+    <script defer type="module" src="{%  static '/discussions/js/discussion.js' %}"></script>
+    <script>
+        window.user_pk = {{ user.pk }};
+        window.username = '{{ user.username }}';
+        window.discussion_id = {{ discussion.pk }};
+    </script>
+{% endblock %}
+
+{% block main %}
+    <main class="discussion">
+        <div class="discussion__wrapper">
+            <h2 class="discussion__heading">
+                {{ discussion.name }}
+            </h2>
+
+            <div class="discussion__container">
+                <div class="discussion__members">
+
+                    <h2 class="discussion__heading">
+                        Список участников
+                    </h2>
+                    <div class="discussion__container_hiden">
+                        {% for user in participants %}
+                            <div class="discussion__item">
+                                <a>
+                                    <img src="{% static 'base/img/member_icon.svg' %}" alt="logo">
+                                    <p>
+                                        {{ user.username }}
+                                    </p>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="discussion__messages">
+                    <div class="discussion__message">
+                        <div class="discussion__message-wrapper">
+                            {% for mgs in messages %}
+                                <div class="discussion__message-item-{% if mgs.created_user == user %}send{% else %}come{% endif %}">
+                                    <div class="discussion__message-item discussion__message-item_{% if mgs.created_user == user %}send{% else %}come{% endif %}">
+                                        <p class="discussion__message-text">{{ mgs.body }}</p>
+                                        <div class="discussion__message-container">
+                                            <span class="discussion__message-name"> {{ mgs.created_user.username }} </span>
+                                            <span class="discussion__message-date"> {{ mgs.create_date|date:"d.m.Y" }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="discussion__message-container-input">
+                        <div class="discussion__message-input">
+                            <input type="text" name="" id="" placeholder="Введите текст">
+                            <div class="discussion__message-send">
+                                <div class="discussion__message-img">
+                                    <img src="{% static 'discussions/img/send_icon.svg' %}" alt="send">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="discussion__files">
+                    <h2 class="discussion__heading">
+                        Список файлов
+                    </h2>
+                    <div class="discussion__container_hiden">
+                        {% for file in attached_file %}
+                            <div class="discussion__item">
+                                <a href="{% url 'attached_file:download_file' pk=file.pk %}" target="_blank">
+                                    <img src="{% static 'discussions/img/file_icon.svg' %}" alt="logo">
+                                    <p>
+                                        {{ file.file_name }}
+                                    </p>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="discussion__upload">
+                        <label for="upload">
+                            <div>
+                                <img src="{% static 'base/img/add_icon.svg' %}" alt="add_file">
+                            </div>
+                        </label>
+                        <input type="file" id="upload">
+                        <div class="discussion__save-file">
+                            <img src="{% static 'discussions/img/save_file_icon.svg' %}" alt="save_file">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

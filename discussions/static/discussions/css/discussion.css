@@ -1,0 +1,186 @@
+.discussion {
+    font-family: RobotMedium;
+}
+.discussion__wrapper {
+    max-width: 1000px;
+    margin: 25px auto 0 auto;
+}
+.discussion__heading {
+    color: #30668C;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #B4D9F3;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: 0;
+    border-bottom: 1px solid #1382D0;
+
+}
+.discussion__container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    height: 400px;
+}
+.discussion__container_hiden {
+    overflow: auto;
+    min-height: 285px;
+}
+.discussion__members {
+    max-width: 250px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #B4D9F3;
+}
+.discussion__container-heading {
+
+}
+.discussion__item {
+    padding: 10px 25px;
+    width: 100%;
+    border-bottom: 1px solid #1382D0;
+    display: flex;
+}
+.discussion__item p {
+    color: #30668C;
+    font-size: 14px;
+    margin: 0;
+    margin-left: 10px;
+}
+.discussion__item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+.discussion__messages {
+    max-width: 400px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #B4D9F3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.discussion__message-img {
+    cursor: pointer;
+}
+.discussion__message-container-input {
+}
+.discussion__message {
+    overflow: auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+}
+.discussion__message-wrapper {
+    max-height: 300px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.discussion__message-item {
+    border-radius: 5px;
+    max-width: 175px;
+    padding: 10px;
+    color: white;
+}
+.discussion__message-item-come {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.discussion__message-item-send {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.discussion__message-item_send {
+    background-color: #5596c5;
+}
+.discussion__message-item_come {
+    background-color: #1382D0;
+}
+
+.discussion__message-item_come,
+.discussion__message-item_send {
+    margin-bottom: 5px;
+    max-width: 160px;
+    width: 100%;
+}
+.discussion__message-text {
+    font-size: 13px;
+    margin: 0;
+    margin-bottom: 4px;
+}
+.discussion__message-container {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+}
+.discussion__message-name {
+    font-size: 9px;
+}
+.discussion__message-date {
+    font-size: 9px;
+}
+.discussion__message-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70px;
+    width: 100%;
+    background-color: #B4D9F3;
+    border-top: 1px solid #1382D0;
+    padding: 0 15px;
+}
+.discussion__message-input input {
+    width: 100%;
+    background-color: #B4D9F3;
+    outline: none;
+    border: none;
+    padding-left: 15px;
+}
+.discussion__message-send {
+
+}
+.discussion__files {
+    max-width: 250px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #B4D9F3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.discussion__container-heading {
+
+}
+.discussion__item {
+
+}
+.discussion__upload {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 60px;
+}
+.discussion__upload input {
+    display: none;
+}
+.discussion__upload label {
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.discussion__save-file {
+    cursor: pointer;
+}

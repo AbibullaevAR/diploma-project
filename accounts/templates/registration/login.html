@@ -1,0 +1,30 @@
+{% include 'base/base.html' with login=True %}
+
+{% block head %}
+    {% load static %}
+    <link href="{% static '/accounts/css/form.css' %}" rel="stylesheet" type="text/css">
+    <title>Вход пользователя</title>
+{% endblock head %}
+
+{% block main %}
+    <main class="main">
+        <div class="container">
+            <div class="sign-mentor__main main__container">
+                <form method="post" class="form">
+                    {% csrf_token %}
+                    <h2 class="form__heading">Войти</h2>
+                    <div class="form__container">
+                        <label class="form__label" for="id_email">Введите ваш username</label>
+                        <input class="form__input" type="text" name="username" required="" id="id_email" placeholder="Username">
+                    </div>
+                    <div class="form__container">
+                        <label class="form__label" for="id_group">Введите ваш пароль</label>
+                        <input class="form__input" type="password" name="password" required="" id="id_group" placeholder="Пароль">
+                    </div>
+
+                    <input class="form__button" type="submit" value="Войти">
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock main %}

@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link href="{% static 'accounts/css/form.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'accounts/css/profile.css' %}" rel="stylesheet" type="text/css">
+
+    <title>Профиль</title>
+{% endblock head %}
+
+{% block main %}
+    <main class="main">
+        <div class="profile container">
+            <div class="profile__container main__container">
+                <div class="profile__container-header">
+                    <h2>Профиль</h2>
+                </div>
+                <div class="profile__container-body">
+                    <div class="profile__container-item">
+                        <div class="form__label">
+                            Группа
+                        </div>
+                        <div class="profile__container-item__label">
+                            {{ group }}
+                        </div>
+                    </div>
+                    <div class="profile__container-item">
+                        <div class="form__label">
+                            Email
+                        </div>
+                        <div class="profile__container-item__label">
+                            {{ user.email }}
+                        </div>
+                    </div>
+                    <form method="POST" action="{% url 'accounts:profile_change' pk=1 %}">
+                        {% csrf_token %}
+                        <div class="profile__container-item">
+                            <label class="form__label" for="id_email">Username</label>
+                            <input class="form__input" type="text" name="username" required="" id="id_email" value="{{ user.username }}">
+                        </div>
+                        <div class="profile__container-item">
+                            <label class="form__label" for="id_email">Имя</label>
+                            <input class="form__input" type="text" name="first_name" required="" id="id_email" value="{{ user.first_name }}">
+                        </div>
+                        <div class="profile__container-item">
+                            <label class="form__label" for="id_email">Фамилия</label>
+                            <input class="form__input" type="text" name="last_name" required="" id="id_email" value="{{ user.last_name }}">
+                        </div>
+                        <div class="profile__container-send">
+                            <input class="form__button" type="submit" value="Сохранить">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock main %}

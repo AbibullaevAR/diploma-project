@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block head %}
+    {% load static %}
+    <link href="{% static '/news/css/recomendParam.css' %}" rel="stylesheet" type="text/css">
+    <script type="module" defer src="{%  static '/news/js/recomendParam.js' %}"></script>
+    <title>Параметры рекомендации</title>
+{% endblock head %}
+
+{% block main %}
+    <main class="main">
+        <div class="recomendParam">
+            <div class="recomendParam__container">
+                <div class="recomendParam__container-header">
+                    <h2 class="">
+                        Список тегов
+                    </h2>
+                </div>
+
+                <div class="recomendParam__container-body">
+                    {% for tag in tags %}
+                        <div class="recomendParam__container-item">
+                            <div class="recomendParam__container-item__text">
+                                {{ tag.name }}
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" class="checkbox" {% if tag not in tags_choice_false %}checked="checked"{% endif %} data-tag_id="{{ tag.pk }}">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock main %}

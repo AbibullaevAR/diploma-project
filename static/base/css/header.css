@@ -1,0 +1,25 @@
+.header {
+    background-color: #1382D0;
+    padding: 25px 10px;
+}
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header__menu {
+    padding: 0px 10px;
+}
+.header__item {
+    text-decoration: none;
+    font-size: 20px;
+    font-family: RobotMedium;
+    color: white;
+}
+.header__item:not(:last-child) {
+    margin-right: 10px;
+}
+.header__item_active {
+    padding-bottom: 5px;
+    border-bottom: 2px solid white;
+}

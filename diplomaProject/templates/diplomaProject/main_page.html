@@ -1,0 +1,122 @@
+{% extends 'base/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link href="{% static 'discussions/css/discussion.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'diplomaProject/css/main.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'accounts/css/form.css' %}" rel="stylesheet" type="text/css">
+
+    <script defer type="module" src="{% static 'diplomaProject/js/main.js' %}"></script>
+
+    <title>Главная страница</title>
+{% endblock head %}
+
+{% block main %}
+    <main class="main">
+        <div class="main__container">
+            <div class="main__container-wraper">
+                <div class="main__discussions">
+                    <div class="discussion__members">
+
+                        <h2 class="discussion__heading">
+                            Обсуждения
+                        </h2>
+                        <div class="discussion__container_hiden">
+                            {% for discussion in discussions %}
+                                <div class="discussion__item">
+                                <a href="{% url 'discussions:detail_discussion' pk=discussion.pk %}">
+                                    <p>
+                                        {{ discussion.name }}
+                                    </p>
+                                </a>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                        <div class="main__news-footer">
+                            <div class="main__news__addNews">
+                                <a href="{% url 'discussions:create_discussion' %}">
+                                    <img src="{% static 'base/img/add_icon.svg' %}" alt="logo">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="main__news">
+
+                    <p class="discussion__heading">Новости</p>
+
+                    <div class="main__news-body">
+                        {% for item in news %}
+                            <div class="main__news-item">
+                                <a href="{% url 'news:detail_news' pk=item.pk %}">
+                                    <p>
+                                        {{ item.title }}
+                                    </p>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+
+
+                    <div class="main__news-footer">
+                        <div class="main__news__addNews">
+                            <a href="{% url 'news:create_news' %}">
+                                <img src="{% static 'base/img/add_icon.svg' %}" alt="logo">
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="main__members">
+                    <div class="discussion__members">
+
+                        <h2 class="discussion__heading">
+                            Список участников
+                        </h2>
+                        <div class="discussion__container_hiden">
+                            {% for member in members %}
+                                <div class="discussion__item">
+                                    <a>
+                                        <img src="{% static 'base/img/member_icon.svg' %}" alt="logo">
+                                        <p>
+                                            {{ member.username }}
+                                        </p>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% if is_mentor %}
+                            <div class="main__news-footer">
+                                <div class="main__add-user">
+                                    <div class="profile__container-body">
+                                        <div class="profile__container-item">
+                                            <label class="form__label" for="id_email">Email</label>
+                                            <input class="form__input addUserEmail" type="email" name="email" required="" id="id_email">
+                                        </div>
+                                        <div class="profile__container-send">
+                                            <input class="form__button" type="submit" value="Добавить">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="main__news__addNews">
+                                    <img src="{% static 'base/img/add_icon.svg' %}" alt="logo">
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock main %}
+
+
+
+
