@@ -45,7 +45,7 @@ jobs:
         REDIS_PORT: 6379
         DEBUG: True
         EMAIL_BACKEND: django.core.mail.backends.console.emailbackend
-        ALLOWED_HOSTS: ['127.0.0.1:*']
+        ALLOWED_HOSTS: "['127.0.0.1:*']"
         STATIC_URL: /production/static/
         STATIC_ROOT: production/static/
       run: |
