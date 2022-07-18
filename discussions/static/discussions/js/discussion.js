@@ -7,7 +7,7 @@ const userId = window.user_pk;
 
 const buttonUploadFile = document.querySelector('.discussion__save-file');
 const buttonSendMessage = document.querySelector('.discussion__message-send');
-const socket = new WebSocket(`ws://127.0.0.1:8000/ws/chat/${discussionId}/`);
+const socket = new WebSocket(`ws://fix-utor.ru/ws/chat/${discussionId}/`);
 buttonUploadFile.addEventListener('click', async function (event){
     await uploadFile(event, addFile);
 

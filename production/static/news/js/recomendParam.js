@@ -13,7 +13,7 @@ import getCookie from "../../../../static/base/js/get_cookie.js";
 async function changeRecomendParam(event){
     const {checked} = event.target
     const {tag_id} = event.target.dataset
-    let choice_url = `http://127.0.0.1:8000/news/api/update_choice/?pk=${tag_id}`
+    let choice_url = `/news/api/update_choice/?pk=${tag_id}`
 
     const dataSend = {
         tag: tag_id,
